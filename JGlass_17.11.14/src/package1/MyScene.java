@@ -33,6 +33,7 @@ import javax.media.j3d.Group;
 import javax.media.j3d.Locale;
 import javax.media.j3d.Node;
 import javax.media.j3d.Shape3D;
+import javax.media.j3d.Transform3D;
 import javax.media.j3d.TransformGroup;
 import javax.vecmath.Color3f;
 import javax.vecmath.Point3d;
@@ -73,6 +74,15 @@ public class MyScene {
         enablePicking(branchGroup);
         //???
         simpleU.getViewingPlatform().setNominalViewingTransform();
+        TransformGroup VpTG = simpleU.getViewingPlatform().getViewPlatformTransform();
+        float Zcamera = 12; //put the camera 12 meters back
+        Transform3D Trfcamera = new Transform3D();
+        Trfcamera.setTranslation(new Vector3f(0.0f, 0.4f, 2.4f)); 
+        //Transform3D tr_temp=new Transform3D();
+        //tr_temp.setScale(3.5);
+        //Trfcamera.mul(tr_temp);
+        VpTG.setTransform( Trfcamera );
+ 
 //        simpleU.addBranchGraph(branchGroup);
     }
 
