@@ -39,6 +39,7 @@ public class Pick extends MouseAdapter {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        System.out.println(e.getY()+"getY");
         mouseClicked=true;
         pickCanvas.setShapeLocation(e);
         PickResult result = pickCanvas.pickClosest();
@@ -80,7 +81,6 @@ public class Pick extends MouseAdapter {
     public void mouseReleased(MouseEvent e) {
         mouseClicked=false;
         if (selectedObject != null) {
-            System.out.println(selectedObject.y+"Y");
             if (selectedObject.y + selectedObject.height / 2 < JGlassApplet.table.y - JGlassApplet.table.height / 2) {
                 selectedObject.moveToDefaultPlace();
             }

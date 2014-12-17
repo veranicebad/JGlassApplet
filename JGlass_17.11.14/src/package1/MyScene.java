@@ -35,6 +35,7 @@ import javax.media.j3d.Node;
 import javax.media.j3d.Shape3D;
 import javax.media.j3d.Transform3D;
 import javax.media.j3d.TransformGroup;
+import javax.media.j3d.View;
 import javax.vecmath.Color3f;
 import javax.vecmath.Point3d;
 import javax.vecmath.Vector3f;
@@ -50,6 +51,7 @@ public class MyScene {
     public Canvas3D canvas = null;
     private int width;
     private int height;
+    public float dY;
     private final LinkedList<MaterialObject> objects
             = new LinkedList<MaterialObject>();
     private MaterialObject selectedObject = null;
@@ -75,9 +77,13 @@ public class MyScene {
         //???
         simpleU.getViewingPlatform().setNominalViewingTransform();
         TransformGroup VpTG = simpleU.getViewingPlatform().getViewPlatformTransform();
-        float Zcamera = 12; //put the camera 12 meters back
+       // float Zcamera = 12; //put the camera 12 meters back
         Transform3D Trfcamera = new Transform3D();
-        Trfcamera.setTranslation(new Vector3f(0.0f, 0.4f, 2.4f)); 
+        dY=0.4f;
+        Trfcamera.setTranslation(new Vector3f(0.0f, dY, 2.4f));
+        //simpleU.getViewingPlatform().getViewers()[0].getView().setWindowEyepointPolicy(0);
+        System.out.println(simpleU.getViewingPlatform().getViewers()[0].getView().getWindowResizePolicy()+"((");
+        //simpleU.getViewingPlatform().getViewPlatform().setViewAttachPolicy(View.NOMINAL_HEAD);
         //Transform3D tr_temp=new Transform3D();
         //tr_temp.setScale(3.5);
         //Trfcamera.mul(tr_temp);
@@ -135,7 +141,7 @@ public class MyScene {
     }
 
     public double scaleY(double y) {
-        return 1 - 2.0 * y / getWidth() - 1.0
+        return 1+ dY- 2.0 * y / getWidth() - 1.0
                 * (getWidth() - getHeight()) / getWidth();
     }
 
