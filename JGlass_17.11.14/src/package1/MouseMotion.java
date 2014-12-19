@@ -108,8 +108,7 @@ public class MouseMotion extends MouseMotionAdapter {
             }
         }
         if (JGlassApplet.pick.selectedObject instanceof Ball) {
-            
-            System.out.println(JGlassApplet.pick.selectedObject.y+"Y");
+          //  System.out.println(JGlassApplet.pick.selectedObject.y+"Y");
             JGlassApplet.pick.selectedObject.setOutsideGlassForMatObj();
         }
         if (JGlassApplet.pick.xMouse > e.getX()) {

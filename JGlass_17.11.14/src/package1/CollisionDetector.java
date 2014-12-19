@@ -90,21 +90,17 @@ class CollisionDetector extends Behavior {
                     return;
                 }
                 //collMatObj.movable=false;
-                System.out.println(collMatObj + " Collided with " + intrsctMatObj);
+                //System.out.println(collMatObj + " Collided with " + intrsctMatObj);
             } else if (theCriterion instanceof WakeupOnCollisionExit) {
                 Node theLeaf = ((WakeupOnCollisionExit) theCriterion).getTriggeringPath().getObject();
-                //System.out.println("Stopped colliding with  "
-                //        + theLeaf.getUserData());
                 intrsctMatObj = ((MaterialObject) (JGlassApplet.scene.hashmap.get((theLeaf))));
-                System.out.println(collMatObj + " Stopped colliding with  " + intrsctMatObj);
+                //System.out.println(collMatObj + " Stopped colliding with  " + intrsctMatObj);
                 // collMatObj.movable=true;
                 intrsctMatObj = null;
             } else {
                 Node theLeaf = ((WakeupOnCollisionMovement) theCriterion).getTriggeringPath().getObject();
-//            System.out.println("Moved whilst colliding with "
-//                    + theLeaf.getUserData());
                 intrsctMatObj = ((MaterialObject) (JGlassApplet.scene.hashmap.get((theLeaf))));
-                System.out.println(collMatObj + " Moved whilst colliding with " + intrsctMatObj);
+//                System.out.println(collMatObj + " Moved whilst colliding with " + intrsctMatObj);
             }
             wakeupOn(oredCriteria);
         }

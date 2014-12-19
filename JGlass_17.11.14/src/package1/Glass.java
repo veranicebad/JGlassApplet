@@ -60,7 +60,7 @@ public class Glass extends MaterialObject {
         shape = new Shape3D();
 
         shape = (Shape3D) branchGroup.getChild(0);
-        System.out.println(shape.getAllGeometries().nextElement() + " BOUNDS");
+        //System.out.println(shape.getAllGeometries().nextElement() + " BOUNDS");
 //        shape.setAppearanceOverrideEnable(true);
 //        Appearance polyAppear = shape.getAppearance();
 //        PolygonAttributes polyAttrib = new PolygonAttributes();

@@ -79,10 +79,10 @@ public class MyScene {
         TransformGroup VpTG = simpleU.getViewingPlatform().getViewPlatformTransform();
        // float Zcamera = 12; //put the camera 12 meters back
         Transform3D Trfcamera = new Transform3D();
-        dY=0.4f;
+        dY=0.0f;
         Trfcamera.setTranslation(new Vector3f(0.0f, dY, 2.4f));
         //simpleU.getViewingPlatform().getViewers()[0].getView().setWindowEyepointPolicy(0);
-        System.out.println(simpleU.getViewingPlatform().getViewers()[0].getView().getWindowResizePolicy()+"((");
+     //   System.out.println(simpleU.getViewingPlatform().getViewers()[0].getView().getWindowResizePolicy()+"((");
         //simpleU.getViewingPlatform().getViewPlatform().setViewAttachPolicy(View.NOMINAL_HEAD);
         //Transform3D tr_temp=new Transform3D();
         //tr_temp.setScale(3.5);

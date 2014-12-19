@@ -52,7 +52,6 @@ public class Table extends MaterialObject {
         branchGroup = s.getSceneGroup();
         //obj=  branchGroup.getAllChildren();
         shape = (Shape3D) branchGroup.getChild(0);
-        System.out.println("GEOM " + shape);
         matObjMoveTo(this.x, this.y, this.z);
         JGlassApplet.scene.hashmap.put(shape, this);
     }
