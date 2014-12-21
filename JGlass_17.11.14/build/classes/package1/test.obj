@@ -1,6 +1,7 @@
 # Blender v2.72 (sub 0) OBJ File: ''
 # www.blender.org
-mtllib brus1.mtl
+mtllib test.mtl
+#g brus1
 v 0.000000 0.450000 0.100000
 v -0.019508 0.450000 0.098081
 v -0.019508 -0.450000 0.098080

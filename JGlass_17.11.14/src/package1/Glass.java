@@ -8,27 +8,13 @@ import com.sun.j3d.loaders.IncorrectFormatException;
 import com.sun.j3d.loaders.ParsingErrorException;
 import com.sun.j3d.loaders.Scene;
 import com.sun.j3d.loaders.objectfile.ObjectFile;
-import com.sun.javafx.geom.BaseBounds;
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.Enumeration;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.shape.Sphere;
-import javax.media.j3d.Appearance;
-import javax.media.j3d.BoundingBox;
-import javax.media.j3d.Bounds;
 import javax.media.j3d.BranchGroup;
-import javax.media.j3d.Geometry;
-import javax.media.j3d.GeometryArray;
-import javax.media.j3d.Node;
-import javax.media.j3d.PolygonAttributes;
 import javax.media.j3d.Shape3D;
-import javax.media.j3d.Transform3D;
-import javax.media.j3d.TriangleArray;
 import javax.vecmath.Point3d;
-import javax.vecmath.Vector3d;
 
 /**
  *

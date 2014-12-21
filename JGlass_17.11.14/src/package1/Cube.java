@@ -14,9 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Shape3D;
-import javax.media.j3d.Transform3D;
 import javax.vecmath.Point3d;
-import javax.vecmath.Vector3d;
 
 /**
  *

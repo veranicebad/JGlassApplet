@@ -5,18 +5,14 @@
  */
 package package1;
 
-import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
 import com.sun.j3d.utils.picking.*;
-import com.sun.j3d.utils.universe.SimpleUniverse;
 import com.sun.j3d.utils.geometry.*;
 import javax.media.j3d.*;
-import javax.vecmath.*;
 import java.awt.event.*;
-import java.awt.*;
 
 public class Pick extends MouseAdapter {
 
-    private PickCanvas pickCanvas;
+    private final PickCanvas pickCanvas;
     private  static Object pickObject = null;
     Glass movedGlass = null;
     public static MaterialObject selectedObject = null;

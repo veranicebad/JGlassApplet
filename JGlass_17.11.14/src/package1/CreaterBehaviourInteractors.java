@@ -6,16 +6,10 @@
 package package1;
 
 import com.sun.j3d.utils.behaviors.keyboard.KeyNavigatorBehavior;
-import com.sun.j3d.utils.behaviors.mouse.MouseBehavior;
 import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;
 import com.sun.j3d.utils.picking.behaviors.PickTranslateBehavior;
-import com.sun.j3d.utils.scenegraph.io.retained.Controller;
-import com.sun.j3d.utils.scenegraph.io.retained.SymbolTableData;
-import com.sun.j3d.utils.scenegraph.io.state.javax.media.j3d.BehaviorState;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.util.Enumeration;
 import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.TransformGroup;
 import javax.vecmath.Point3d;

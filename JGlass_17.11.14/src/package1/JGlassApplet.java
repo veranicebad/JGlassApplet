@@ -4,48 +4,10 @@
  */
 package package1;
 
-import com.sun.j3d.loaders.*;
-import com.sun.j3d.loaders.ParsingErrorException;
-import com.sun.j3d.utils.applet.MainFrame;
-import com.sun.j3d.utils.geometry.Box;
-import com.sun.j3d.utils.geometry.Cylinder;
-import com.sun.j3d.utils.geometry.Sphere;
-import com.sun.j3d.utils.picking.PickTool;
-import com.sun.j3d.utils.picking.behaviors.PickTranslateBehavior;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 import java.applet.Applet;
 import java.awt.BorderLayout;
-import java.awt.Event;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.media.j3d.BoundingSphere;
-import javax.media.j3d.Bounds;
-import javax.media.j3d.BranchGroup;
-import javax.media.j3d.Canvas3D;
-import javax.media.j3d.DirectionalLight;
-import javax.media.j3d.Node;
-import javax.media.j3d.Shape3D;
-import javax.swing.Timer;
-import javax.vecmath.Color3f;
 import javax.vecmath.Point3d;
-import javax.vecmath.Vector3f;
-import java.io.FileReader;
-import java.io.IOException;
-import com.sun.j3d.loaders.Scene; // Contains the object loaded from disk.
-import com.sun.j3d.loaders.objectfile.ObjectFile; // Loader of .obj models
-import com.sun.j3d.utils.geometry.Primitive;
-import java.io.ObjectInputStream;
-import java.net.URL;
-import javax.annotation.Resources;
-import javax.media.j3d.NodeComponent;
-
 /**
  *
  * @author ver
@@ -59,13 +21,11 @@ public class JGlassApplet extends Applet {
     //public static Ball ball2 = null;
     public static Baulk baulk = null;
     public static Cube cube = null;
-    SimpleUniverse simpleU;
+    private SimpleUniverse simpleU;
     public static Pick pick = null;
     public static MouseMotion mouseMotion = null;
     public static MotionToAxisZ motionZ = null;
     public static CreaterBehaviourInteractors createrBehaviourInteractors = null;
-    //public static CollisionDetector myColDet = null;
-    //public static CollisionDetector myColDet1 = null;
     public static Glass glass = null;
     //private int width = 500, height = 500;
 
@@ -85,10 +45,9 @@ public class JGlassApplet extends Applet {
         cube = new Cube(0, 100, 490, 0, 20, 20, new Point3d(0, 0, 0), true);
         baulk = new Baulk(0, 100, 380, 0, 20, 90, new Point3d(Math.PI/2, 0, 0), false);
         glass = new Glass(0, 250, 420, 0, 80, 160, new Point3d(0, 0, 0), true);
-        //scale = new Scale(0, 250, 300, 0, 100, 200, new Point3d(0, 0, 0), true);
+        scale = new Scale(0, 250, 480, 0, 70, 70, new Point3d(0, 0, 0), true);
         scene.addObject(scale);
         scene.addObject(ball);
-//        scene.addObject(ball2);
         scene.addObject(cube);
         scene.addObject(baulk);
         scene.addObject(glass);
@@ -126,7 +85,7 @@ public class JGlassApplet extends Applet {
         
 //        scale.transformGroup.addChild(scale.branchGroup);
 //        scene.branchGroup.addChild(scale.transformGroup);
-        
+////        
         baulk.transformGroup.addChild(baulk.branchGroup);
         scene.branchGroup.addChild(baulk.transformGroup);
         table.transformGroup.addChild(table.branchGroup);

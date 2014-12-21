@@ -4,17 +4,9 @@
  */
 package package1;
 
-import com.sun.j3d.utils.behaviors.keyboard.KeyNavigatorBehavior;
-import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;
-import com.sun.j3d.utils.behaviors.mouse.MouseWheelZoom;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import static java.lang.Math.abs;
-import javax.media.j3d.BoundingSphere;
-import javax.media.j3d.Bounds;
-import javax.media.j3d.BranchGroup;
-import javax.media.j3d.TransformGroup;
-import javax.vecmath.Point3d;
 
 /**
  *
@@ -67,13 +59,9 @@ public class MouseMotion extends MouseMotionAdapter {
         gl.gamma.z = gl.gamma.z - 0.02;
         //gl.inclineGlass(gl.gamma,0, 0);
     }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        JGlassApplet.baulk.setBGBaulkIsAttach();
-        if (JGlassApplet.pick.selectedObject instanceof Ball) {
-            JGlassApplet.pick.selectedObject.setOutsideGlassForMatObj();
-        }
+    
+    public void setMouseDragParameters(MouseEvent e)
+    {
         if (JGlassApplet.pick.xMouse > e.getX()) {
             goRight = false;
         } else {
@@ -83,8 +71,16 @@ public class MouseMotion extends MouseMotionAdapter {
             goUp = true;
         } else {
             goUp = false;
+        }    
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        setMouseDragParameters(e);
+        JGlassApplet.baulk.setBGBaulkIsAttach();
+        if (JGlassApplet.pick.selectedObject instanceof Ball) {
+            JGlassApplet.pick.selectedObject.setOutsideGlassForMatObj();
         }
-        //14.08.14
         if (JGlassApplet.pick.selectedObject != null && !JGlassApplet.motionZ.shiftPressed) {
             if (JGlassApplet.pick.selectedObject.movable) {
                 if (JGlassApplet.pick.selectedObject instanceof Glass) {
@@ -143,8 +139,7 @@ public class MouseMotion extends MouseMotionAdapter {
         if (JGlassApplet.pick.selectedObject != null && JGlassApplet.motionZ.shiftPressed) {
             if (JGlassApplet.pick.selectedObject.movable) {
                 JGlassApplet.pick.selectedObject.matObjMoveTo(
-                        //JGlassApplet.pick.selectedObject.x,
-                        e.getX() - JGlassApplet.pick.grabShiftX,
+                        JGlassApplet.pick.selectedObject.x,
                         JGlassApplet.pick.selectedObject.y,
                         JGlassApplet.pick.selectedObject.z - JGlassApplet.pick.selectedObject.y
                         + e.getY() - JGlassApplet.pick.grabShiftY);

@@ -4,10 +4,7 @@
  */
 package package1;
 
-import java.awt.Point;
 import java.util.Enumeration;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.media.j3d.Behavior;
 import javax.media.j3d.Bounds;
 import javax.media.j3d.Node;
@@ -17,7 +14,6 @@ import javax.media.j3d.WakeupOnCollisionEntry;
 import javax.media.j3d.WakeupOnCollisionExit;
 import javax.media.j3d.WakeupOnCollisionMovement;
 import javax.media.j3d.WakeupOr;
-import javax.vecmath.Point3d;
 
 class CollisionDetector extends Behavior {
 

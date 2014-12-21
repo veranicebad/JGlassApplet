@@ -9,18 +9,12 @@ import com.sun.j3d.loaders.ParsingErrorException;
 import com.sun.j3d.loaders.Scene;
 import com.sun.j3d.loaders.objectfile.ObjectFile;
 import java.io.FileNotFoundException;
-import static java.lang.Math.abs;
 import java.net.URL;
-import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.media.j3d.BranchGroup;
-import javax.media.j3d.Geometry;
 import javax.media.j3d.Shape3D;
-import javax.media.j3d.Transform3D;
 import javax.vecmath.Point3d;
-import javax.vecmath.Vector3d;
-import jdk.nashorn.internal.codegen.CompilerConstants;
 //import javax.media.j3d.*;
 
 /**

@@ -4,6 +4,7 @@
  */
 package package1;
 
+
 import com.sun.j3d.utils.behaviors.keyboard.KeyNavigatorBehavior;
 import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
 import com.sun.j3d.utils.behaviors.mouse.*;
@@ -77,18 +78,18 @@ public class MyScene {
         //???
         simpleU.getViewingPlatform().setNominalViewingTransform();
         TransformGroup VpTG = simpleU.getViewingPlatform().getViewPlatformTransform();
-       // float Zcamera = 12; //put the camera 12 meters back
+        // float Zcamera = 12; //put the camera 12 meters back
         Transform3D Trfcamera = new Transform3D();
-        dY=0.0f;
+        dY = 0.0f;
         Trfcamera.setTranslation(new Vector3f(0.0f, dY, 2.4f));
         //simpleU.getViewingPlatform().getViewers()[0].getView().setWindowEyepointPolicy(0);
-     //   System.out.println(simpleU.getViewingPlatform().getViewers()[0].getView().getWindowResizePolicy()+"((");
+        //   System.out.println(simpleU.getViewingPlatform().getViewers()[0].getView().getWindowResizePolicy()+"((");
         //simpleU.getViewingPlatform().getViewPlatform().setViewAttachPolicy(View.NOMINAL_HEAD);
         //Transform3D tr_temp=new Transform3D();
         //tr_temp.setScale(3.5);
         //Trfcamera.mul(tr_temp);
-        VpTG.setTransform( Trfcamera );
- 
+        VpTG.setTransform(Trfcamera);
+
 //        simpleU.addBranchGraph(branchGroup);
     }
 
@@ -97,10 +98,10 @@ public class MyScene {
         Color3f light1Color = new Color3f(Color.WHITE);
         bounds = new BoundingSphere(new Point3d(4.0, 0.0, 0.0), 100.0);
         Vector3f light1Direction = new Vector3f(0.0f, -7.0f, -12.0f);
-        DirectionalLight light1
-                = new DirectionalLight(light1Color, light1Direction);
-        light1.setInfluencingBounds(bounds);
-        objRoot.addChild(light1);
+        DirectionalLight sun = new DirectionalLight(light1Color, light1Direction);
+        sun.setInfluencingBounds(bounds);
+        objRoot.addChild(sun);
+        
         return objRoot;
     }
 //???
@@ -141,7 +142,7 @@ public class MyScene {
     }
 
     public double scaleY(double y) {
-        return 1+ dY- 2.0 * y / getWidth() - 1.0
+        return 1 + dY - 2.0 * y / getWidth() - 1.0
                 * (getWidth() - getHeight()) / getWidth();
     }
 
