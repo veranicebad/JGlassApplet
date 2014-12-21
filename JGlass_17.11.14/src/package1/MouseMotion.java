@@ -68,8 +68,6 @@ public class MouseMotion extends MouseMotionAdapter {
         //gl.inclineGlass(gl.gamma,0, 0);
     }
 
-    
-    
     @Override
     public void mouseDragged(MouseEvent e) {
         JGlassApplet.baulk.setBGBaulkIsAttach();
@@ -141,25 +139,17 @@ public class MouseMotion extends MouseMotionAdapter {
                             JGlassApplet.pick.selectedObject.z);
                 }
             }
-        } //14.08.14
-//нужный кусок, до добавления наклона стакана, потом рассмотреть
-//        if (JGlassApplet.pick.selectedObject != null && !JGlassApplet.motionZ.shiftPressed) {
-//            if (JGlassApplet.pick.selectedObject.movable) {
-//                JGlassApplet.pick.selectedObject.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX,
-//                        e.getY() - JGlassApplet.pick.grabShiftY,
-//                        JGlassApplet.pick.selectedObject.z);
-//            }
-//        }
-//        if (JGlassApplet.pick.selectedObject != null && JGlassApplet.motionZ.shiftPressed) {
-//            if (JGlassApplet.pick.selectedObject.movable) {
-//                JGlassApplet.pick.selectedObject.matObjMoveTo(
-//                        //JGlassApplet.pick.selectedObject.x,
-//                        e.getX() - JGlassApplet.pick.grabShiftX,
-//                        JGlassApplet.pick.selectedObject.y,
-//                        JGlassApplet.pick.selectedObject.z - JGlassApplet.pick.selectedObject.y
-//                        + e.getY() - JGlassApplet.pick.grabShiftY);
-//            }
-//        }
+        }
+        if (JGlassApplet.pick.selectedObject != null && JGlassApplet.motionZ.shiftPressed) {
+            if (JGlassApplet.pick.selectedObject.movable) {
+                JGlassApplet.pick.selectedObject.matObjMoveTo(
+                        //JGlassApplet.pick.selectedObject.x,
+                        e.getX() - JGlassApplet.pick.grabShiftX,
+                        JGlassApplet.pick.selectedObject.y,
+                        JGlassApplet.pick.selectedObject.z - JGlassApplet.pick.selectedObject.y
+                        + e.getY() - JGlassApplet.pick.grabShiftY);
+            }
+        }
         JGlassApplet.pick.xMouse = e.getX();
         JGlassApplet.pick.yMouse = e.getY();
     }
