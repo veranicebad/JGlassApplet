@@ -44,6 +44,7 @@ public class Baulk extends MaterialObject {
     //видна ли балка в данный момент
     volatile boolean isVisible;
     private URL filename = null;
+    private boolean BGisAttach = true;
     public BranchGroup branchGroup = null;
 
     public Baulk(float mass, double x, double y, double z, int width, int height, Point3d gamma, boolean movable) {
@@ -67,6 +68,21 @@ public class Baulk extends MaterialObject {
         JGlassApplet.scene.hashmap.put(shape, this);
         this.isVisible = false;
         branchGroup.setCapability(BranchGroup.ALLOW_DETACH);
+    }
+
+    public void setBGBaulkIsAttach() {
+        if (JGlassApplet.pick.movedGlass != null) {
+            setVisibleBaulkLeft(JGlassApplet.pick.movedGlass);
+            if (isVisible) {
+                if (BGisAttach == false) {
+                    transformGroup.addChild(branchGroup);
+                    BGisAttach = true;
+                }
+            } else {
+                BGisAttach = false;
+                branchGroup.detach();
+            }
+        }
     }
 
     public void setVisibleBaulkLeft(Glass movedGlass) {

@@ -43,7 +43,7 @@ public class Pick extends MouseAdapter {
         pickCanvas.setShapeLocation(e);
         PickResult result = pickCanvas.pickClosest();
         if (result == null) {
-            System.out.println("Nothing picked");
+           // System.out.println("Nothing picked");
         } else {
             //System.out.println(result.getObject() + "res");
             pickObject = result.getObject();
@@ -54,6 +54,7 @@ public class Pick extends MouseAdapter {
             //JGlassApplet.scene.createBehaviourInteractors(selectedObject);
             //System.out.println(selectedObject + "=selObj");
             xMouse = e.getX();
+            
             yMouse = e.getY();
             grabShiftX = (e.getX() - selectedObject.x);
             grabShiftY = (e.getY() - selectedObject.y);
@@ -64,11 +65,11 @@ public class Pick extends MouseAdapter {
             branchGroupCD.addChild(JGlassApplet.pick.myColDet);
             JGlassApplet.scene.simpleU.addBranchGraph(branchGroupCD);
             if (p != null) {
-                System.out.println(p.getClass().getName() + "1");
+                //System.out.println(p.getClass().getName() + "1");
             } else if (s != null) {
-                System.out.println(s.getClass().getName() + "2");
+                //System.out.println(s.getClass().getName() + "2");
             } else {
-                System.out.println("null");
+                //System.out.println("null");
             }
         }
         if (selectedObject instanceof Glass) {

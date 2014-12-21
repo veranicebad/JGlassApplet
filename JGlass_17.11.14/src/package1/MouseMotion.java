@@ -24,7 +24,6 @@ public class MouseMotion extends MouseMotionAdapter {
 
     public boolean mouseClicked = false, goRight, goUp;
     //public static BranchGroup branchGroupBaulk = null;
-    private boolean BGisAttach = true;
 
     public MouseMotion() {
         JGlassApplet.scene.canvas.addMouseMotionListener(this);
@@ -33,30 +32,6 @@ public class MouseMotion extends MouseMotionAdapter {
     }
 
     public void setMovableForCollision(MaterialObject matObj, MouseEvent e) {
-        //            Bounds[] b = {JGlassApplet.pick.selectedObject.c.getBounds()};
-//            Bounds intesect = JGlassApplet.pick.myColDet.intrsctMatObj.c.getBounds().closestIntersection(b);
-//            if (intesect != null) {
-        //System.out.println("!#" + intesect);
-        // Action to do if Intersect is true 
-        //            }
-        //if (JGlassApplet.pick.myColDet.intrsctMatObj != null) {
-//            if (((e.getX() - JGlassApplet.pick.grabShiftX - JGlassApplet.pick.myColDet.intrsctMatObj.x
-//                    <= matObj.width / 2 + JGlassApplet.pick.myColDet.intrsctMatObj.width / 2) && (!goRight))
-//                    || ((JGlassApplet.pick.myColDet.intrsctMatObj.x - e.getX() + JGlassApplet.pick.grabShiftX
-//                    <= matObj.width / 2 + JGlassApplet.pick.myColDet.intrsctMatObj.width / 2)&&(goRight))
-//                    || ((e.getY() - JGlassApplet.pick.grabShiftY - JGlassApplet.pick.myColDet.intrsctMatObj.y
-//                    <= matObj.height / 2 + JGlassApplet.pick.myColDet.intrsctMatObj.height / 2)&&(!goUp))
-//                    || ((e.getY() - JGlassApplet.pick.grabShiftY - JGlassApplet.pick.myColDet.intrsctMatObj.y
-//                    >= matObj.height / 2 + JGlassApplet.pick.myColDet.intrsctMatObj.height / 2)&&(goUp)))
-//             if(JGlassApplet.pick.temp<JGlassApplet.pick.myColDet.flagColl) {
-//                matObj.movable = false;
-//            } else {
-//                matObj.movable = true;
-//            }
-//            if(JGlassApplet.pick.temp<JGlassApplet.pick.myColDet.flagColl)
-//            System.out.println(JGlassApplet.pick.temp+"!!!!!"+JGlassApplet.pick.myColDet.flagColl);
-        // }
-        //ecли нет столкновения, то оставляем как было
     }
 
     public boolean contactLeft(Baulk blk) {
@@ -93,22 +68,12 @@ public class MouseMotion extends MouseMotionAdapter {
         //gl.inclineGlass(gl.gamma,0, 0);
     }
 
+    
+    
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (JGlassApplet.pick.movedGlass != null) {
-            JGlassApplet.baulk.setVisibleBaulkLeft(JGlassApplet.pick.movedGlass);
-            if (JGlassApplet.baulk.isVisible) {
-                if (BGisAttach == false) {
-                    JGlassApplet.baulk.transformGroup.addChild(JGlassApplet.baulk.branchGroup);
-                    BGisAttach = true;
-                }
-            } else {
-                BGisAttach = false;
-                JGlassApplet.baulk.branchGroup.detach();
-            }
-        }
+        JGlassApplet.baulk.setBGBaulkIsAttach();
         if (JGlassApplet.pick.selectedObject instanceof Ball) {
-          //  System.out.println(JGlassApplet.pick.selectedObject.y+"Y");
             JGlassApplet.pick.selectedObject.setOutsideGlassForMatObj();
         }
         if (JGlassApplet.pick.xMouse > e.getX()) {
@@ -179,7 +144,6 @@ public class MouseMotion extends MouseMotionAdapter {
         } //14.08.14
 //нужный кусок, до добавления наклона стакана, потом рассмотреть
 //        if (JGlassApplet.pick.selectedObject != null && !JGlassApplet.motionZ.shiftPressed) {
-//            setMovableForCollision(JGlassApplet.pick.selectedObject, e);
 //            if (JGlassApplet.pick.selectedObject.movable) {
 //                JGlassApplet.pick.selectedObject.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX,
 //                        e.getY() - JGlassApplet.pick.grabShiftY,
@@ -187,7 +151,6 @@ public class MouseMotion extends MouseMotionAdapter {
 //            }
 //        }
 //        if (JGlassApplet.pick.selectedObject != null && JGlassApplet.motionZ.shiftPressed) {
-//            setMovableForCollision(JGlassApplet.pick.selectedObject, e);
 //            if (JGlassApplet.pick.selectedObject.movable) {
 //                JGlassApplet.pick.selectedObject.matObjMoveTo(
 //                        //JGlassApplet.pick.selectedObject.x,
