@@ -59,9 +59,8 @@ public class MouseMotion extends MouseMotionAdapter {
         gl.gamma.z = gl.gamma.z - 0.02;
         //gl.inclineGlass(gl.gamma,0, 0);
     }
-    
-    public void setMouseDragParameters(MouseEvent e)
-    {
+
+    public void setMouseDragParameters(MouseEvent e) {
         if (JGlassApplet.pick.xMouse > e.getX()) {
             goRight = false;
         } else {
@@ -71,7 +70,7 @@ public class MouseMotion extends MouseMotionAdapter {
             goUp = true;
         } else {
             goUp = false;
-        }    
+        }
     }
 
     @Override
@@ -79,61 +78,63 @@ public class MouseMotion extends MouseMotionAdapter {
         setMouseDragParameters(e);
         JGlassApplet.baulk.setBGBaulkIsAttach();
         if (JGlassApplet.pick.selectedObject instanceof Ball) {
+            Ball bll = (Ball) JGlassApplet.pick.selectedObject;
             JGlassApplet.pick.selectedObject.setOutsideGlassForMatObj();
+            if (JGlassApplet.glass != null) {
+                bll.setMovable(JGlassApplet.glass, e.getX(), e.getY());
+            }
         }
         if (JGlassApplet.pick.selectedObject != null && !JGlassApplet.motionZ.shiftPressed) {
-            if (JGlassApplet.pick.selectedObject.movable) {
-                if (JGlassApplet.pick.selectedObject instanceof Glass) {
-                    Glass gl;
-                    gl = JGlassApplet.pick.movedGlass;
-                    if (abs(gl.gamma.z) < 1e-6) {
-                        gl.gamma.z = 0;
+            if (JGlassApplet.pick.selectedObject instanceof Glass) {
+                Glass gl;
+                gl = JGlassApplet.pick.movedGlass;
+                if (abs(gl.gamma.z) < 1e-6) {
+                    gl.gamma.z = 0;
 //                        gl.inclineGlass(gl.gamma, 0, 0);
-                    }
-                    if (gl.gamma.z == 0) {
-                        if ((!(contactLeft(JGlassApplet.baulk))) && (!(contactRight(JGlassApplet.baulk)))) {
-                            gl.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
-                        } else {
-                            if ((JGlassApplet.pick.xMouse < e.getX()) && (contactLeft(JGlassApplet.baulk))) {
-                                gl.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
-                            }
-                            if ((JGlassApplet.pick.xMouse > e.getX()) && (contactRight(JGlassApplet.baulk))) {
-                                gl.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
-                            }
-                            if ((JGlassApplet.pick.xMouse < e.getX()) && (contactRight(JGlassApplet.baulk))) {
-                                gl.matObjMoveTo((int) gl.x, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
-                                inclineGlassOnBaulkRight(gl);
-                            }
-                            if ((JGlassApplet.pick.xMouse > e.getX()) && (contactLeft(JGlassApplet.baulk))) {
-                                gl.matObjMoveTo((int) gl.x, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
-                                inclineGlassOnBaulkLeft(gl);
-                            }
-                        }
+                }
+                if (gl.gamma.z == 0) {
+                    if ((!(contactLeft(JGlassApplet.baulk))) && (!(contactRight(JGlassApplet.baulk)))) {
+                        gl.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
                     } else {
-                        gl.matObjMoveTo((int) gl.x, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
-                        if ((!contactLeft(JGlassApplet.baulk)) && (!contactRight(JGlassApplet.baulk))) {
-                            gl.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
-                            gl.gamma.z = 0;
-//                            gl.inclineGlass(gl.gamma, 0, 0);
-                        }
-                        if ((JGlassApplet.pick.xMouse > e.getX()) && (contactLeft(JGlassApplet.baulk))) {
-                            inclineGlassOnBaulkLeft(gl);
-                        }
                         if ((JGlassApplet.pick.xMouse < e.getX()) && (contactLeft(JGlassApplet.baulk))) {
-                            inclineGlassOnBaulkRight(gl);
+                            gl.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
                         }
                         if ((JGlassApplet.pick.xMouse > e.getX()) && (contactRight(JGlassApplet.baulk))) {
-                            inclineGlassOnBaulkLeft(gl);
+                            gl.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
                         }
                         if ((JGlassApplet.pick.xMouse < e.getX()) && (contactRight(JGlassApplet.baulk))) {
+                            gl.matObjMoveTo((int) gl.x, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
                             inclineGlassOnBaulkRight(gl);
+                        }
+                        if ((JGlassApplet.pick.xMouse > e.getX()) && (contactLeft(JGlassApplet.baulk))) {
+                            gl.matObjMoveTo((int) gl.x, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
+                            inclineGlassOnBaulkLeft(gl);
                         }
                     }
                 } else {
-                    JGlassApplet.pick.selectedObject.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX,
-                            e.getY() - JGlassApplet.pick.grabShiftY,
-                            JGlassApplet.pick.selectedObject.z);
+                    gl.matObjMoveTo((int) gl.x, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
+                    if ((!contactLeft(JGlassApplet.baulk)) && (!contactRight(JGlassApplet.baulk))) {
+                        gl.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX, e.getY() - JGlassApplet.pick.grabShiftY, gl.z);
+                        gl.gamma.z = 0;
+//                            gl.inclineGlass(gl.gamma, 0, 0);
+                    }
+                    if ((JGlassApplet.pick.xMouse > e.getX()) && (contactLeft(JGlassApplet.baulk))) {
+                        inclineGlassOnBaulkLeft(gl);
+                    }
+                    if ((JGlassApplet.pick.xMouse < e.getX()) && (contactLeft(JGlassApplet.baulk))) {
+                        inclineGlassOnBaulkRight(gl);
+                    }
+                    if ((JGlassApplet.pick.xMouse > e.getX()) && (contactRight(JGlassApplet.baulk))) {
+                        inclineGlassOnBaulkLeft(gl);
+                    }
+                    if ((JGlassApplet.pick.xMouse < e.getX()) && (contactRight(JGlassApplet.baulk))) {
+                        inclineGlassOnBaulkRight(gl);
+                    }
                 }
+            } else {
+                JGlassApplet.pick.selectedObject.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX,
+                        e.getY() - JGlassApplet.pick.grabShiftY,
+                        JGlassApplet.pick.selectedObject.z);
             }
         }
         if (JGlassApplet.pick.selectedObject != null && JGlassApplet.motionZ.shiftPressed) {

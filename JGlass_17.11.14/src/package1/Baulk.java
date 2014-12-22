@@ -51,7 +51,10 @@ public class Baulk extends MaterialObject {
         }
         branchGroup = s.getSceneGroup();
         shape = (Shape3D) branchGroup.getChild(0);
+        boolean movableT=this.movable;
+        this.movable=true;
         matObjMoveTo(this.x, this.y, this.z);
+        this.movable=movableT;
         JGlassApplet.scene.hashmap.put(shape, this);
         this.isVisible = false;
         branchGroup.setCapability(BranchGroup.ALLOW_DETACH);
@@ -84,14 +87,16 @@ public class Baulk extends MaterialObject {
 
     @Override
     protected void matObjMoveTo(double newX, double newY, double newZ) {
-        x = newX;
-        y = newY;
-        z = newZ;
-        Transform3D trTmp = new Transform3D();
+        if (this.movable) {
+            x = newX;
+            y = newY;
+            z = newZ;
+            Transform3D trTmp = new Transform3D();
         //Vector3f r = new Vector3f(-100f, 10f, 0f);
-        //trTmp.setRotation(new AxisAngle4f(r, 1f));
-        //tr.mul(trTmp);
-        setTransform3D(getScale(relationWidthHeight));
+            //trTmp.setRotation(new AxisAngle4f(r, 1f));
+            //tr.mul(trTmp);
+            setTransform3D(getScale(relationWidthHeight));
+        }
     }
 
     @Override

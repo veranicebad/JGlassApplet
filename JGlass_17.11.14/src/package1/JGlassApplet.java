@@ -10,7 +10,7 @@ import java.awt.BorderLayout;
 import javax.vecmath.Point3d;
 /**
  *
- * @author ver
+ * @author Vera
  */
 public class JGlassApplet extends Applet {
 
@@ -18,7 +18,6 @@ public class JGlassApplet extends Applet {
     public static Table table = null;
     public static Ball ball = null;
     public static Scale scale = null;
-    //public static Ball ball2 = null;
     public static Baulk baulk = null;
     public static Cube cube = null;
     private SimpleUniverse simpleU;
@@ -44,7 +43,7 @@ public class JGlassApplet extends Applet {
         ball = new Ball(0, 150, 480, 0, 40, 40, new Point3d(0, 0, 0), true);
         cube = new Cube(0, 100, 490, 0, 20, 20, new Point3d(0, 0, 0), true);
         baulk = new Baulk(0, 100, 380, 0, 20, 90, new Point3d(Math.PI/2, 0, 0), false);
-        glass = new Glass(0, 250, 420, 0, 80, 160, new Point3d(0, 0, 0), true);
+        glass = new Glass(0, 250, 420, 0, 80, 160, 55, new Point3d(0, 0, 0), true);
         scale = new Scale(0, 250, 480, 0, 70, 70, new Point3d(0, 0, 0), true);
         scene.addObject(scale);
         scene.addObject(ball);

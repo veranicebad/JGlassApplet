@@ -24,11 +24,13 @@ public class Glass extends MaterialObject {
 
     private URL filename = null;
     BranchGroup branchGroup = null;
+    public int widthBottom;
     //protected double gamma;
 
-    public Glass(float mass, double x, double y, double z, int width, int height,
+    public Glass(float mass, double x, double y, double z, int width, int height, int widthBottom,
             Point3d gamma, boolean movable) {
         super(mass, x, y, z, width, height, gamma, movable);
+        this.widthBottom=widthBottom;
         filename = JGlassApplet.class.getResource("glass.obj");
         ObjectFile f = new ObjectFile();
         f.setFlags(ObjectFile.RESIZE);
@@ -75,7 +77,8 @@ public class Glass extends MaterialObject {
         newCenter.z = newZ;
         if (JGlassApplet.pick.myColDet != null) {
             if (JGlassApplet.pick.myColDet.intrsctMatObj != null) {
-                if (((this.newCenter.distance(JGlassApplet.pick.myColDet.intrsctMatObj.center)) >= (this.center.distance(JGlassApplet.pick.myColDet.intrsctMatObj.center)))
+                if (((this.newCenter.distance(JGlassApplet.pick.myColDet.intrsctMatObj.center))
+                        >= (this.center.distance(JGlassApplet.pick.myColDet.intrsctMatObj.center)))
                         && (!(this.newCenter.distance(this.center) > JGlassApplet.pick.myColDet.intrsctMatObj.width))) {
                     x = newX;
                     y = newY;
