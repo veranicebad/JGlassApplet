@@ -36,7 +36,7 @@ public class Baulk extends MaterialObject {
 
     public Baulk(float mass, double x, double y, double z, int width, int height, Point3d gamma, boolean movable) {
         super(mass, x, y, z, width, height, gamma, movable);
-        filename = JGlassApplet.class.getResource("brus1.obj");
+        filename = JGlassApplet.class.getResource("brus.obj");
         ObjectFile f = new ObjectFile();
         f.setFlags(ObjectFile.RESIZE);
         Scene s = null;

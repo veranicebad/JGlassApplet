@@ -48,7 +48,10 @@ public class Table extends MaterialObject {
         branchGroup = s.getSceneGroup();
         //obj=  branchGroup.getAllChildren();
         shape = (Shape3D) branchGroup.getChild(0);
+        boolean movableT=this.movable;
+        this.movable=true;
         matObjMoveTo(this.x, this.y, this.z);
+        this.movable=movableT;
         JGlassApplet.scene.hashmap.put(shape, this);
     }
 
@@ -57,10 +60,12 @@ public class Table extends MaterialObject {
 
     @Override
     protected void matObjMoveTo(double newX, double newY, double newZ) {
+        if(movable){
         x = newX;
         y = newY;
         z = newZ;
         setTransform3D(getScale(relationWidthHeight));
+        }
     }
 
     @Override

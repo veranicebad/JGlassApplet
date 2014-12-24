@@ -30,7 +30,7 @@ public class Glass extends MaterialObject {
     public Glass(float mass, double x, double y, double z, int width, int height, int widthBottom,
             Point3d gamma, boolean movable) {
         super(mass, x, y, z, width, height, gamma, movable);
-        this.widthBottom=widthBottom;
+        this.widthBottom=(int)(width*0.74160895045285029302077783697389);
         filename = JGlassApplet.class.getResource("glass.obj");
         ObjectFile f = new ObjectFile();
         f.setFlags(ObjectFile.RESIZE);

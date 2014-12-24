@@ -146,7 +146,10 @@ public class MouseMotion extends MouseMotionAdapter {
                         + e.getY() - JGlassApplet.pick.grabShiftY);
             }
         }
-        JGlassApplet.pick.xMouse = e.getX();
+        JGlassApplet.pick.xMouse
+                
+                
+                = e.getX();
         JGlassApplet.pick.yMouse = e.getY();
     }
 }
