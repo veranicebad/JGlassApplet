@@ -52,7 +52,7 @@ public abstract class MaterialObject {
         transformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
         transformGroup.setCapability(TransformGroup.ALLOW_TRANSFORM_READ);
         transformGroup.setCapability(TransformGroup.ALLOW_CHILDREN_EXTEND);
-        transformGroup.setCapability(TransformGroup.ALLOW_CHILDREN_WRITE);  
+        transformGroup.setCapability(TransformGroup.ALLOW_CHILDREN_WRITE);
     }
 
     public boolean isSelected(int x, int y) {
@@ -103,11 +103,13 @@ public abstract class MaterialObject {
 
     protected abstract void matObjMoveTo(double newX, double newY, double newZ);
 
+    protected abstract void setMovable(MaterialObject matObjIntrsct, double newX, double newY, double newZ);
+
     protected Vector3d getScale(double relationWidthHeight) {
         Vector3d scale3d = new Vector3d(1, 1, 1);
         if (relationWidthHeight >= 1) {
             scale3d.x = 1.0 * width / JGlassApplet.scene.getWidth();
-            scale3d.y = 1.0 * relationWidthHeight * width / (JGlassApplet.scene.getWidth());
+            scale3d.y = 1.0 * height * relationWidthHeight / (JGlassApplet.scene.getWidth());
             scale3d.z = 1.0 * width / JGlassApplet.scene.getWidth();
         } else {
             scale3d.x = 1.0 * width / (JGlassApplet.scene.getWidth() * relationWidthHeight);
@@ -138,6 +140,7 @@ public abstract class MaterialObject {
     }
 
     public abstract boolean isOverGlass(Glass glass);
+    public abstract boolean isUpperGlass(Glass glass);
 
     public void setOutsideGlassForMatObj() {
         if (outside == null) {

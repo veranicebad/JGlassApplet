@@ -35,7 +35,7 @@ public class Pick extends MouseAdapter {
 
     @Override
     public void mousePressed(MouseEvent e) {
-       System.out.println(e.getY()+"!!!");
+       //System.out.println(e.getY()+"!!!");
         mouseClicked=true;
         pickCanvas.setShapeLocation(e);
         PickResult result = pickCanvas.pickClosest();

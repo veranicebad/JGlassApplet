@@ -77,11 +77,11 @@ public class MouseMotion extends MouseMotionAdapter {
     public void mouseDragged(MouseEvent e) {
         setMouseDragParameters(e);
         JGlassApplet.baulk.setBGBaulkIsAttach();
-        if (JGlassApplet.pick.selectedObject instanceof Ball) {
-            Ball bll = (Ball) JGlassApplet.pick.selectedObject;
+        if (!(JGlassApplet.pick.selectedObject instanceof Glass)) {
+            //Ball bll = (Ball) JGlassApplet.pick.selectedObject;
             JGlassApplet.pick.selectedObject.setOutsideGlassForMatObj();
             if (JGlassApplet.glass != null) {
-                bll.setMovable(JGlassApplet.glass, e.getX(), e.getY());
+                JGlassApplet.pick.selectedObject.setMovable(JGlassApplet.pick.myColDet.intrsctMatObj, e.getX(), e.getY(),0);
             }
         }
         if (JGlassApplet.pick.selectedObject != null && !JGlassApplet.motionZ.shiftPressed) {

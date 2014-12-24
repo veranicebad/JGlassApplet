@@ -51,38 +51,13 @@ public class Cube extends MaterialObject {
     }
 
     protected void matObjMoveTo(double newX, double newY, double newZ) {
-        newCenter.x = newX;
-        newCenter.y = newY;
-        newCenter.z = newZ;
-        if (JGlassApplet.pick.myColDet != null) {
-            if (JGlassApplet.pick.myColDet.intrsctMatObj != null) {
-                if ((outside == JGlassApplet.pick.myColDet.intrsctMatObj)
-                        && ((this.newCenter.distance(JGlassApplet.pick.myColDet.intrsctMatObj.center)) <= (this.center.distance(JGlassApplet.pick.myColDet.intrsctMatObj.center)))) {
-                    x = newX;
-                    y = newY;
-                    z = newZ;
-                    this.center.x = x;
-                    this.center.y = y;
-                    this.center.z = z;
-                }
-                if ((outside != JGlassApplet.pick.myColDet.intrsctMatObj)
-                        && ((this.newCenter.distance(JGlassApplet.pick.myColDet.intrsctMatObj.center)) >= (this.center.distance(JGlassApplet.pick.myColDet.intrsctMatObj.center)))
-                        && (!(this.newCenter.distance(this.center) > JGlassApplet.pick.myColDet.intrsctMatObj.width))) {
-                    x = newX;
-                    y = newY;
-                    z = newZ;
-                    this.center.x = x;
-                    this.center.y = y;
-                    this.center.z = z;
-                }
-            } else {
-                x = newX;
-                y = newY;
-                z = newZ;
-                this.center.x = x;
-                this.center.y = y;
-                this.center.z = z;
-            }
+        if (this.movable) {
+            x = newX;
+            y = newY;
+            z = newZ;
+            this.center.x = x;
+            this.center.y = y;
+            this.center.z = z;
         }
 //        System.out.println("coord" + x + " " + y + " " + z);
         setTransform3D(getScale(relationWidthHeight));
@@ -93,6 +68,54 @@ public class Cube extends MaterialObject {
     @Override
     public boolean isOverGlass(Glass glass) {
         if (this.x - this.width / 2 > glass.x - glass.width / 2 && x + width / 2 < glass.x + glass.width / 2) {// && y < glass.y1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    protected void setMovable(MaterialObject matObjIntrsct, double newX, double newY, double newZ) {
+        if (matObjIntrsct != null) {
+            if (matObjIntrsct instanceof Glass) {
+                Glass glass = (Glass) matObjIntrsct;
+                if (this.isUpperGlass(glass)) {
+                    this.movable = true;
+                } else {
+                    Point nC = new Point(newX, newY);
+                    Point oC = new Point(this.x, this.y);
+                    if (nC.distance(oC.x, oC.y) > Math.min(glass.widthBottom, this.width / 2)) {
+                        this.movable = false;
+                    } else {
+                        Point p1 = new Point(glass.x - glass.width / 2, glass.y - glass.height / 2);
+                        Point p2 = new Point(glass.x + glass.width / 2, glass.y - glass.height / 2);
+                        Point p3 = new Point(p2.x - (glass.width - glass.widthBottom) / 2, p2.y + glass.height);
+                        Point p4 = new Point(p3.x - glass.widthBottom, p3.y);
+                        Line l2 = new Line(p2, p3);
+                        Line l3 = new Line(p3, p4);
+                        Line l4 = new Line(p4, p1);
+                        if (l2.calcDistance(newX, newY) >= this.width / 2
+                                && l3.calcDistance(newX, newY) >= this.height / 2
+                                && l4.calcDistance(newX, newY) >= this.width / 2) {
+                            this.movable = true;
+                        } else {
+                            this.movable = false;
+                        }
+                    }
+                }
+            } else {
+                Point3d nC = new Point3d(newX, newY, newZ);
+                if (nC.distance(matObjIntrsct.center) >= center.distance(matObjIntrsct.center)) {
+                    movable = true;
+                } else {
+                    movable = false;
+                }
+            }
+        }
+    }
+
+    public boolean isUpperGlass(Glass glass) {
+        if (glass.y - glass.height / 2 > this.y) {
             return true;
         } else {
             return false;

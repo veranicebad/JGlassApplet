@@ -44,7 +44,7 @@ public class JGlassApplet extends Applet {
         cube = new Cube(0, 100, 490, 0, 20, 20, new Point3d(0, 0, 0), true);
         baulk = new Baulk(0, 100, 380, 0, 20, 90, new Point3d(Math.PI/2, 0, 0), false);
         glass = new Glass(0, 270, 420, 0, 80, 160, 55, new Point3d(0, 0, 0), true);
-        crown = new Crown(0, 200, 500-(int)(40*0.734/2.0), 0, 40, (int)(40*0.734), new Point3d(0, 0, 0), true);
+        crown = new Crown(0, 200, 500-(int)(40*0.734/4.0), 0, 40, (int)(20*0.734), new Point3d(0, 0, 0), true);
         scene.addObject(crown);
         scene.addObject(ball);
         scene.addObject(cube);
