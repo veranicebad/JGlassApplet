@@ -97,14 +97,14 @@ public class Glass extends MaterialObject {
 
     @Override
     protected void setMovable(MaterialObject matObjIntrsct, double newX, double newY, double newZ) {
+        Point nC = new Point(newX, newY);
+        Point oC = new Point(this.x, this.y);
         if (matObjIntrsct != null) {
             if (matObjIntrsct instanceof Glass) {
                 Glass glass = (Glass) matObjIntrsct;
                 if (this.isUpperGlass(glass)) {
                     this.movable = true;
                 } else {
-                    Point nC = new Point(newX, newY);
-                    Point oC = new Point(this.x, this.y);
                     if (nC.distance(oC.x, oC.y) > Math.min(glass.widthBottom, this.width / 2)) {
                         this.movable = false;
                     } else {
@@ -125,13 +125,19 @@ public class Glass extends MaterialObject {
                     }
                 }
             } else {
-                Point3d nC = new Point3d(newX, newY, newZ);
-                if (nC.distance(matObjIntrsct.center) >= center.distance(matObjIntrsct.center)) {
-                    movable = true;
+                if (nC.distance(oC.x, oC.y) > Math.min(matObjIntrsct.width / 2, this.width / 2)) {
+                    this.movable = false;
                 } else {
-                    movable = false;
+                    Point3d nC3d = new Point3d(newX, newY, newZ);
+                    if (nC3d.distance(matObjIntrsct.center) >= center.distance(matObjIntrsct.center)) {
+                        movable = true;
+                    } else {
+                        movable = false;
+                    }
                 }
             }
+        } else {
+            movable = true;
         }
     }
 
