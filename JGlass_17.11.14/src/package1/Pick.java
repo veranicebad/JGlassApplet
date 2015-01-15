@@ -13,7 +13,7 @@ import java.awt.event.*;
 public class Pick extends MouseAdapter {
 
     private final PickCanvas pickCanvas;
-    private  static Object pickObject = null;
+    private static Object pickObject = null;
     Glass movedGlass = null;
     public static MaterialObject selectedObject = null;
     MaterialObject pressedObject = null;
@@ -23,7 +23,7 @@ public class Pick extends MouseAdapter {
     public static CollisionDetector myColDet = null;
     public static BranchGroup branchGroupCD = null;
     public static int xMouse, yMouse;
-    public static boolean mouseClicked=false;
+    public static boolean mouseClicked = false;
 
     public Pick() {
         pickCanvas = new PickCanvas(JGlassApplet.scene.canvas, JGlassApplet.scene.branchGroup);
@@ -35,12 +35,12 @@ public class Pick extends MouseAdapter {
 
     @Override
     public void mousePressed(MouseEvent e) {
-       //System.out.println(e.getY()+"!!!");
-        mouseClicked=true;
+        //System.out.println(e.getY()+"!!!");
+        mouseClicked = true;
         pickCanvas.setShapeLocation(e);
         PickResult result = pickCanvas.pickClosest();
         if (result == null) {
-           // System.out.println("Nothing picked");
+            // System.out.println("Nothing picked");
         } else {
             //System.out.println(result.getObject() + "res");
             pickObject = result.getObject();
@@ -51,7 +51,7 @@ public class Pick extends MouseAdapter {
             //JGlassApplet.scene.createBehaviourInteractors(selectedObject);
             //System.out.println(selectedObject + "=selObj");
             xMouse = e.getX();
-            
+
             yMouse = e.getY();
             grabShiftX = (e.getX() - selectedObject.x);
             grabShiftY = (e.getY() - selectedObject.y);
@@ -72,19 +72,26 @@ public class Pick extends MouseAdapter {
         if (selectedObject instanceof Glass) {
             movedGlass = (Glass) selectedObject;
         }
+        if (selectedObject instanceof Scale) {
+            if ((e.getY() - (JGlassApplet.pick.selectedObject.y - JGlassApplet.pick.selectedObject.height / 2) < 10)
+                    && (e.getY() - (JGlassApplet.pick.selectedObject.y - JGlassApplet.pick.selectedObject.height / 2) > 0)) {
+                    selectedObject.isRotate=true;
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        mouseClicked=false;
+        mouseClicked = false;
         if (selectedObject != null) {
-            selectedObject.gamma.z=0;
+            selectedObject.gamma.z = 0;
             if (selectedObject.y + selectedObject.height / 2 < JGlassApplet.table.y - JGlassApplet.table.height / 2) {
                 selectedObject.moveToDefaultPlace();
             }
             if (selectedObject instanceof Glass) {
                 movedGlass = null;
             }
+            selectedObject.isRotate=false;
             selectedObject = null;
         }
         JGlassApplet.pick.branchGroupCD = null;

@@ -52,12 +52,24 @@ public class MouseMotion extends MouseMotionAdapter {
 
     public void inclineGlassOnBaulkLeft(Glass gl) {
         gl.gamma.z = gl.gamma.z + 0.02;
+        gl.setTransform3D(gl.getScale(gl.relationWidthHeight));
         //gl.inclineGlass(gl.gamma,0, 0);
     }
 
     public void inclineGlassOnBaulkRight(Glass gl) {
         gl.gamma.z = gl.gamma.z - 0.02;
+        gl.setTransform3D(gl.getScale(gl.relationWidthHeight));
         //gl.inclineGlass(gl.gamma,0, 0);
+    }
+
+    public void rotateRight(MaterialObject matObj) {
+        matObj.gamma.z = matObj.gamma.z - 0.02;
+        matObj.setTransform3D(matObj.getScale(matObj.relationWidthHeight));
+    }
+
+    public void rotateLeft(MaterialObject matObj) {
+        matObj.gamma.z = matObj.gamma.z + 0.02;
+        matObj.setTransform3D(matObj.getScale(matObj.relationWidthHeight));
     }
 
     public void setMouseDragParameters(MouseEvent e) {
@@ -77,11 +89,13 @@ public class MouseMotion extends MouseMotionAdapter {
     public void mouseDragged(MouseEvent e) {
         setMouseDragParameters(e);
         JGlassApplet.baulk.setBGBaulkIsAttach();
-        if (!(JGlassApplet.pick.selectedObject instanceof Glass)) {
-            //Ball bll = (Ball) JGlassApplet.pick.selectedObject;
-            JGlassApplet.pick.selectedObject.setOutsideGlassForMatObj();
-            if (JGlassApplet.glass != null) {
-                JGlassApplet.pick.selectedObject.setMovable(JGlassApplet.pick.myColDet.intrsctMatObj, e.getX(), e.getY(),0);
+        if (JGlassApplet.pick.selectedObject != null) {
+            if (!(JGlassApplet.pick.selectedObject instanceof Glass)) {
+                //Ball bll = (Ball) JGlassApplet.pick.selectedObject;
+                JGlassApplet.pick.selectedObject.setOutsideGlassForMatObj();
+                if (JGlassApplet.glass != null) {
+                    JGlassApplet.pick.selectedObject.setMovable(JGlassApplet.pick.myColDet.intrsctMatObj, e.getX(), e.getY(), 0);
+                }
             }
         }
         if (JGlassApplet.pick.selectedObject != null && !JGlassApplet.motionZ.shiftPressed) {
@@ -132,9 +146,18 @@ public class MouseMotion extends MouseMotionAdapter {
                     }
                 }
             } else {
-                JGlassApplet.pick.selectedObject.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX,
-                        e.getY() - JGlassApplet.pick.grabShiftY,
-                        JGlassApplet.pick.selectedObject.z);
+                if (JGlassApplet.pick.selectedObject instanceof Scale
+                        && JGlassApplet.pick.selectedObject.isRotate) {
+                    if (JGlassApplet.pick.xMouse > e.getX()) {
+                        rotateLeft(JGlassApplet.pick.selectedObject);
+                    } else {
+                        rotateRight(JGlassApplet.pick.selectedObject);
+                    }
+                } else {
+                    JGlassApplet.pick.selectedObject.matObjMoveTo(e.getX() - JGlassApplet.pick.grabShiftX,
+                            e.getY() - JGlassApplet.pick.grabShiftY,
+                            JGlassApplet.pick.selectedObject.z);
+                }
             }
         }
         if (JGlassApplet.pick.selectedObject != null && JGlassApplet.motionZ.shiftPressed) {
@@ -146,10 +169,7 @@ public class MouseMotion extends MouseMotionAdapter {
                         + e.getY() - JGlassApplet.pick.grabShiftY);
             }
         }
-        JGlassApplet.pick.xMouse
-                
-                
-                = e.getX();
+        JGlassApplet.pick.xMouse = e.getX();
         JGlassApplet.pick.yMouse = e.getY();
     }
 }

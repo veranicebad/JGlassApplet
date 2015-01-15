@@ -24,6 +24,7 @@ public abstract class MaterialObject {
     protected int width, height;
     protected double relationWidthHeight;
     protected boolean movable = true;
+    protected boolean isRotate = false;
     //protected MouseRotate behavior = null;
     Shape3D shape = null;
     public Point3d center = new Point3d(0, 0, 0);
