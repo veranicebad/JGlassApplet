@@ -84,10 +84,11 @@ public class Pick extends MouseAdapter {
     public void mouseReleased(MouseEvent e) {
         mouseClicked = false;
         if (selectedObject != null) {
+            if(!(selectedObject instanceof Scale)){
             selectedObject.gamma.z = 0;
             if (selectedObject.y + selectedObject.height / 2 < JGlassApplet.table.y - JGlassApplet.table.height / 2) {
                 selectedObject.moveToDefaultPlace();
-            }
+            }}
             if (selectedObject instanceof Glass) {
                 movedGlass = null;
             }
