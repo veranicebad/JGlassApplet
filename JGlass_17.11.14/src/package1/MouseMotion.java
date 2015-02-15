@@ -90,6 +90,7 @@ public class MouseMotion extends MouseMotionAdapter {
         setMouseDragParameters(e);
         JGlassApplet.baulk.setBGBaulkIsAttach();
         if (JGlassApplet.pick.selectedObject != null) {
+            //System.out.println(JGlassApplet.pick.selectedObject.y+"y");
             if (!(JGlassApplet.pick.selectedObject instanceof Glass)) {
                 //Ball bll = (Ball) JGlassApplet.pick.selectedObject;
                 JGlassApplet.pick.selectedObject.setOutsideGlassForMatObj();

@@ -21,6 +21,7 @@ public class JGlassApplet extends Applet {
     public static Crown crown = null;
     public static Scale scale = null;
 
+    public static Sink sink=null;
     public static Baulk baulk = null;
     public static Cube cube = null;
     private SimpleUniverse simpleU;
@@ -43,16 +44,18 @@ public class JGlassApplet extends Applet {
         motionZ = new MotionToAxisZ();
         //размеры задавать пропорциональные размерам в Blender
         table = new Table(0, 250, 700, 0, 400, 400, new Point3d(0, 0, 0), false);
-        ball = new Ball(0, 135, 480, 0, 40, 40, new Point3d(0, 0, 0), true);
-        cube = new Cube(0, 100, 490, 0, 20, 20, new Point3d(0, 0, 0), true);
+        ball = new Ball(0, 335, 480, 0, 40, 40, new Point3d(0, 0, 0), true);
+        cube = new Cube(0, 368, 490, 0, 20, 20, new Point3d(0, 0, 0), true);
+        sink= new Sink(0, 110, 495, 0, 120, 120, new Point3d(0, 0, 0), true);
         baulk = new Baulk(0, 100, 380, 0, 20, 90, new Point3d(Math.PI / 2, 0, 0), false);
         glass = new Glass(0, 270, 420, 0, 80, 160, 55, new Point3d(0, 0, 0), true);
         scale = new Scale(0, 400, 500 - (int) (100), 0, 20, (int) (200), new Point3d(0, 0, 0), true);
         scene.addObject(scale);
-        crown = new Crown(0, 200, 500 - (int) (40 * 0.734 / 4.0), 0, 40, (int) (20 * 0.734), new Point3d(0, 0, 0), true);
+        crown = new Crown(0, 205, 500 - (int) (40 * 0.734 / 4.0), 0, 40, (int) (20 * 0.734), new Point3d(0, 0, 0), true);
         scene.addObject(crown);
         scene.addObject(ball);
         scene.addObject(cube);
+        scene.addObject(sink);
         scene.addObject(baulk);
         scene.addObject(glass);
         scene.addObject(table);
@@ -90,6 +93,9 @@ public class JGlassApplet extends Applet {
         crown.transformGroup.addChild(crown.branchGroup);
         scene.branchGroup.addChild(crown.transformGroup);
 //        
+        sink.transformGroup.addChild(sink.branchGroup);
+        scene.branchGroup.addChild(sink.transformGroup);
+        
         baulk.transformGroup.addChild(baulk.branchGroup);
         scene.branchGroup.addChild(baulk.transformGroup);
         table.transformGroup.addChild(table.branchGroup);
