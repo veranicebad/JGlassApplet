@@ -43,11 +43,11 @@ public class JGlassApplet extends Applet {
         mouseMotion = new MouseMotion();
         motionZ = new MotionToAxisZ();
         //размеры задавать пропорциональные размерам в Blender
-        table = new Table(0, 250, 700, 0, 400, 400, new Point3d(0, 0, 0), false);
+        table = new Table(0, 300, 540, 0, 400, 80, new Point3d(0, 0, 0), false);
         ball = new Ball(0, 335, 480, 0, 40, 40, new Point3d(0, 0, 0), true);
         cube = new Cube(0, 368, 490, 0, 20, 20, new Point3d(0, 0, 0), true);
-        sink= new Sink(0, 110, 495, 0, 120, 120, new Point3d(0, 0, 0), true);
-        baulk = new Baulk(0, 100, 380, 0, 20, 90, new Point3d(Math.PI / 2, 0, 0), false);
+        sink= new Sink(0, 300-200+71/2, 540-40+8/2, 0, 71, 8, new Point3d(0, 0, 0), true);
+        baulk = new Baulk(0, 170, 380, 0, 20, 90, new Point3d(Math.PI / 2, 0, 0), false);
         glass = new Glass(0, 270, 420, 0, 80, 160, 55, new Point3d(0, 0, 0), true);
         scale = new Scale(0, 400, 500 - (int) (100), 0, 20, (int) (200), new Point3d(0, 0, 0), true);
         scene.addObject(scale);

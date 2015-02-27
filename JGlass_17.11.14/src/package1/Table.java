@@ -32,7 +32,7 @@ public class Table extends MaterialObject {
     public Table(float mass, double x, double y, double z, int width, int height,
             Point3d gamma, boolean movable) {
         super(mass, x, y, z, width, height, gamma, movable);
-        filename = JGlassApplet.class.getResource("table.obj");
+        filename = JGlassApplet.class.getResource("scene.obj");
         ObjectFile f = new ObjectFile();
         f.setFlags(ObjectFile.RESIZE);
         Scene s = null;
@@ -48,10 +48,10 @@ public class Table extends MaterialObject {
         branchGroup = s.getSceneGroup();
         //obj=  branchGroup.getAllChildren();
         shape = (Shape3D) branchGroup.getChild(0);
-        boolean movableT=this.movable;
-        this.movable=true;
+        boolean movableT = this.movable;
+        this.movable = true;
         matObjMoveTo(this.x, this.y, this.z);
-        this.movable=movableT;
+        this.movable = movableT;
         JGlassApplet.scene.hashmap.put(shape, this);
     }
 
@@ -60,11 +60,14 @@ public class Table extends MaterialObject {
 
     @Override
     protected void matObjMoveTo(double newX, double newY, double newZ) {
-        if(movable){
-        x = newX;
-        y = newY;
-        z = newZ;
-        setTransform3D(getScale(relationWidthHeight));
+        if (movable) {
+            x = newX;
+            y = newY;
+            z = newZ;
+            this.center.x = x;
+            this.center.y = y;
+            this.center.z = z;
+            setTransform3D(getScale(relationWidthHeight));
         }
     }
 
