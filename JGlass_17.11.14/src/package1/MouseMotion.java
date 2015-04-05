@@ -87,7 +87,7 @@ public class MouseMotion extends MouseMotionAdapter {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        System.out.println(JGlassApplet.pick.myColDet.intrsctMatObj + "");
+        //System.out.println(JGlassApplet.pick.myColDet.intrsctMatObj + "");
         setMouseDragParameters(e);
         JGlassApplet.baulk.setBGBaulkIsAttach();
         if (JGlassApplet.pick.selectedObject != null) {

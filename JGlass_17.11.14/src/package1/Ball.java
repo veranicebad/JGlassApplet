@@ -44,8 +44,9 @@ public class Ball extends MaterialObject {
         } catch (ParsingErrorException ex) {
             Logger.getLogger(JGlassApplet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        shape = (Shape3D) s.getSceneGroup().getChild(0);
         branchGroup = s.getSceneGroup();
+        shape = (Shape3D) branchGroup.getChild(0);
+        
         branchGroup.setCapability(BranchGroup.ALLOW_DETACH);
         matObjMoveTo(this.x, this.y, this.z);
         //setTransform3D(x, y, z, getScale());
